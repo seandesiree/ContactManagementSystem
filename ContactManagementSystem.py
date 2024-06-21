@@ -37,17 +37,40 @@ def delete_contact(dict_contacts):
 
 
 def search_contact(dict_contacts):
-    name = input("What is the name of the new contact? ")
+    name = input("What is the name of the contact? ")
+    number = input("What is the number of the contact? ")
+    email = input("What is the email? of the contact? ")
     if name in dict_contacts:
         contact = dict_contacts[name]
         print(f"{name}, {contact[0]}, {contact[1]}\n")
-
+    elif number in dict_contacts:
+        contact = dict_contacts[name]
+        print(f"{name}, {contact[0]}, {contact[1]}\n")
+    elif email in dict_contacts:
+        contact = dict_contacts[name]
+        print(f"{name}, {contact[0]}, {contact[1]}\n")
+    
 
 
 def display_contact(dict_contacts):
     for name, values in dict_contacts.items():
         number, email = values
         print(f"{name}: {number}, {email}")
+    
+    sort = input("Would you like to sort contacts? If yes, type by 'name', 'number' or 'email'. If no, press any key to continue. ")
+    if sort == "name".lower():
+        sorted_name = dict(sorted(dict_contacts.items()))
+        print(sorted_name)
+    elif sort == "number".lower():
+        sorted_number = dict(sorted(dict_contacts.items(), key = lambda x:x[0]))
+        print(sorted_number)
+    elif sort == "email".lower():
+        sorted_email = dict(sorted(dict_contacts.items(), key = lambda x:x[1]))
+        print(sorted_email)
+    else:
+        return "Continue"
+
+        
 
 
 def export_contacts(dict_contacts, filename):
